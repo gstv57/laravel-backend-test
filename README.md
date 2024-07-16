@@ -1,16 +1,16 @@
 ### Desafio para candidatos à vaga de Desenvolvedor PHP (Jr/Pleno/Sênior)
 
 #### Instruções:
-- [X] Implementar uma aplicação Web utilizando algum framework PHP e um banco de dados relacional MySQL ou Postgres.
+- [ ] Implementar uma aplicação Web utilizando algum framework PHP e um banco de dados relacional MySQL ou Postgres.
 - [ ] Criar tabelas conforme sua implementação.
 
 #### Funcionalidades da aplicação:
 
 ##### CRUD de clientes:
-- [ ] Implementar CRUD de clientes.
-- [ ] CRUD deve ser filtrável e ordenável por qualquer campo.
-- [ ] Deve possuir formulários para criação e atualização de seus itens.
-- [ ] Deve permitir a deleção de qualquer item da lista.
+- [x] Implementar CRUD de clientes.
+- [x] CRUD deve ser filtrável e ordenável por qualquer campo.
+- [x] Deve possuir formulários para criação e atualização de seus itens.
+- [x] Deve permitir a deleção de qualquer item da lista.
 
 ##### CRUD de produtos:
 - [ ] Implementar CRUD de produtos.
