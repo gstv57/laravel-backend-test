@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Cliente, User};
+use App\Models\Produto;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\{Cliente, User};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
             'password' => 123,
         ]);
         Cliente::factory(100)->create();
+        Produto::factory(50)->create();
     }
 }

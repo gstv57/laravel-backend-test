@@ -19,8 +19,8 @@ class ClienteFactory extends Factory
         return [
             'nome'               => $this->faker->name,
             'email'              => $this->faker->email,
-            'telefone'           => $this->faker->phoneNumber,
-            'data_de_nascimento' => $this->faker->dateTimeBetween('-30 years', 'now', 'America/Sao_Paulo'),
+            'telefone'           => $this->getTelefone(),
+            'data_de_nascimento' => $this->faker->date('Y-m-d', '-30 years'),
             'cpf'                => $this->getCPF(),
             'sexo'               => 'm',
             'created_at'         => now(),
@@ -60,5 +60,12 @@ class ClienteFactory extends Factory
         $cpf = "$n1$n2$n3$n4$n5$n6$n7$n8$n9$d1$d2";
 
         return $cpf;
+    }
+    private function getTelefone()
+    {
+        $ddd = str_pad(rand(11, 99), 2, '0', STR_PAD_LEFT);
+        $numero = '9' . str_pad(rand(100000000, 999999999), 9, '0', STR_PAD_LEFT);
+
+        return $ddd . $numero;
     }
 }
