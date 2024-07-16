@@ -21,10 +21,10 @@
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-finance.html">Ver clientes</a>
+                                            <a class="nav-link" href="{{ route('clientes.index') }}">Ver clientes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-sales.html">Criar clientes</a>
+                                            <a class="nav-link" href="{{ route('clientes.create') }}">Criar cliente</a>
                                         </li>
                                     </ul>
                                 </div>

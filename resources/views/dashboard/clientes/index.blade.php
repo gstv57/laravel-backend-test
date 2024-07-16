@@ -1,7 +1,5 @@
 <x-app-layout>
     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-6">
-        <button type="button" class="my-2 btn btn-primary">
-            <a href="{{ route('clientes.create') }}" style="color: white;">Novo Cliente</a></button>
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}

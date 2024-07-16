@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefone" class="col-form-label">Telefone</label>
-                        <input id="telefone" name="telefone" type="number" class="form-control" placeholder="Numbers">
+                        <input id="telefone" name="telefone" type="number" class="form-control" placeholder="00000000000">
                         @error('telefone')
                             <li class="parsley-required">{{ $message }}</li>
                         @enderror
