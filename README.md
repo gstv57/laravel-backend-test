@@ -1,7 +1,7 @@
 ### Desafio para candidatos à vaga de Desenvolvedor PHP (Jr/Pleno/Sênior)
 
 #### Instruções:
-- [ ] Implementar uma aplicação Web utilizando algum framework PHP e um banco de dados relacional MySQL ou Postgres.
+- [X] Implementar uma aplicação Web utilizando algum framework PHP e um banco de dados relacional MySQL ou Postgres.
 - [ ] Criar tabelas conforme sua implementação.
 
 #### Funcionalidades da aplicação:
