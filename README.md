@@ -29,10 +29,10 @@
 - [ ] Adicionar links para os outros CRUDs nas listagens (Ex: link para o detalhe do cliente na lista de pedidos de compra).
 
 #### Tecnologias a serem utilizadas:
-- [ ] HTML
-- [ ] CSS
-- [ ] Javascript
-- [ ] PHP (Laravel, Yii, Lumen, etc...)
+- [x] HTML
+- [x] CSS
+- [x] Javascript
+- [x] PHP (Laravel, Yii, Lumen, etc...)
 
 #### Entrega:
 - [ ] Fazer um fork do repositório.
@@ -41,9 +41,9 @@
 - [ ] Enviar LinkedIn ou currículo para vagas@oliveiratrust.com.br.
 
 #### Bônus:
-- [ ] Implementar autenticação de usuário na aplicação.
+- [x] Implementar autenticação de usuário na aplicação.
 - [ ] Permitir deleção em massa de itens nos CRUDs.
-- [ ] Implementar camada de Front-End utilizando a biblioteca Javascript Bootstrap e ser responsiva.
+- [x] Implementar camada de Front-End utilizando a biblioteca Javascript Bootstrap e ser responsiva.
 - [ ] Criar API Rest JSON para todos os CRUDs listados acima.
 
 #### Nossa análise:
