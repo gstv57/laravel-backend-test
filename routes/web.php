@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cliente\ClienteController;
+use App\Http\Controllers\Produto\ProdutoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/clientes/editar/{id}', [ClienteController::class, 'edit'])->name('clientes.edit');
     Route::put('/clientes/editar/{id}', [ClienteController::class, 'update'])->name('clientes.update');
     Route::delete('/clientes/excluir/{id}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+
+    Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+    Route::get('/produtos/criar', [ProdutoController::class, 'create'])->name('produtos.create');
+    Route::post('/produtos/criar', [ProdutoController::class, 'store'])->name('produtos.store');
+    Route::get('/produtos/editar/{id}', [ProdutoController::class, 'edit'])->name('produtos.edit');
+
 });
 
 require __DIR__ . '/auth.php';

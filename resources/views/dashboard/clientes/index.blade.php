@@ -103,14 +103,14 @@
                                 <td>{{ $cliente->status ? 'ativo' : 'inativo' }}</td>
                                 <td>
                                     <a href="{{ route('clientes.edit', $cliente->id) }}">
-                                        <i class="fas fa-user"></i>
+                                        <i class="fas fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $clientes->links('pagination::bootstrap-4') }}
+                {{ $clientes->appends($queryString)->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

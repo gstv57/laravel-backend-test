@@ -20,12 +20,16 @@ class ClienteController extends Controller
 
     public function index(Request $request)
     {
+        $validate = $request->validate(['search' => 'string|max:50']);
         $clientes = $this
-            ->aplicarFiltros($request->input('search'))
+            ->aplicarPesquisa($validate)
+            ->aplicarFiltros($request->only(['nome', 'email', 'telefone', 'status', 'sexo', 'data_de_nascimento', 'cpf']))
             ->aplicarOrdenacao($request->input('sort', 'id'), $request->input('direction', 'asc'))
             ->paginacao(10);
 
-        return view('dashboard.clientes.index', compact('clientes'));
+        $queryString = $request->except('page');
+
+        return view('dashboard.clientes.index', compact('clientes', 'queryString'));
     }
 
     public function create()

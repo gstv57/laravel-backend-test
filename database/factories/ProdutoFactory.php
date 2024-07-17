@@ -17,11 +17,11 @@ class ProdutoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->word,
-            'descricao' => $this->faker->paragraph,
-            'preco' => $this->faker->randomFloat(2, 1, 1000),
+            'nome'       => $this->faker->word,
+            'descricao'  => $this->faker->paragraph,
+            'preco'      => $this->faker->randomFloat(2, 1, 1000),
             'quantidade' => $this->faker->numberBetween(1, 100),
-            'ativo' => $this->faker->boolean,
+            'status'     => $this->faker->boolean,
         ];
     }
 }

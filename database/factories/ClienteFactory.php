@@ -63,7 +63,7 @@ class ClienteFactory extends Factory
     }
     private function getTelefone()
     {
-        $ddd = str_pad(rand(11, 99), 2, '0', STR_PAD_LEFT);
+        $ddd    = str_pad(rand(11, 99), 2, '0', STR_PAD_LEFT);
         $numero = '9' . str_pad(rand(100000000, 999999999), 9, '0', STR_PAD_LEFT);
 
         return $ddd . $numero;

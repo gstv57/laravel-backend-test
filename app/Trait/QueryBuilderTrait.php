@@ -8,28 +8,40 @@ trait QueryBuilderTrait
 {
     protected Builder $query;
 
-    public function aplicarFiltros($search)
+    public function aplicarFiltros(array $filtros = [])
     {
-        if ($search) {
-            $this->query->where(function ($q) use ($search) {
-                $q->where('nome', 'LIKE', '%' . $search . '%')
-                  ->orWhere('email', 'LIKE', '%' . $search . '%')
-                  ->orWhere('telefone', 'LIKE', '%' . $search . '%')
-                  ->orWhere('status', 'LIKE', '%' . $search . '%')
-                  ->orWhere('sexo', 'LIKE', '%' . $search . '%')
-                  ->orWhere('data_de_nascimento', 'LIKE', '%' . $search . '%')
-                  ->orWhere('cpf', 'LIKE', '%' . $search . '%');
+        foreach ($filtros as $campo => $valor) {
+            if (!is_null($valor) && $valor !== '') {
+                $this->query->where($campo, 'LIKE', '%' . $valor . '%');
+            }
+        }
+        return $this;
+    }
+
+    public function aplicarPesquisa($termo)
+    {
+        if (!is_null($termo) && $termo !== '') {
+            $this->query->where(function ($query) use ($termo) {
+                $query->where('nome', 'LIKE', '%' . $termo . '%')
+                      ->orWhere('email', 'LIKE', '%' . $termo . '%')
+                      ->orWhere('telefone', 'LIKE', '%' . $termo . '%')
+                      ->orWhere('data_de_nascimento', 'LIKE', '%' . $termo . '%')
+                      ->orWhere('cpf', 'LIKE', '%' . $termo . '%')
+                      ->orWhere('sexo', 'LIKE', '%' . $termo . '%')
+                      ->orWhere('status', 'LIKE', '%' . $termo . '%');
             });
         }
-
         return $this;
     }
-    public function aplicarOrdenacao($ordenar, $direcao)
+
+    public function aplicarOrdenacao($ordenar, $direcao = 'asc')
     {
-        $this->query->orderBy($ordenar, $direcao);
-
+        if ($ordenar) {
+            $this->query->orderBy($ordenar, $direcao);
+        }
         return $this;
     }
+
     public function paginacao($porPagina = 10)
     {
         return $this->query->paginate($porPagina);
