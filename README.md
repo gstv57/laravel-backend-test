@@ -13,10 +13,10 @@
 - [x] Deve permitir a deleção de qualquer item da lista.
 
 ##### CRUD de produtos:
-- [ ] Implementar CRUD de produtos.
-- [ ] CRUD deve ser filtrável e ordenável por qualquer campo.
-- [ ] Deve possuir formulários para criação e atualização de seus itens.
-- [ ] Deve permitir a deleção de qualquer item da lista.
+- [x] Implementar CRUD de produtos.
+- [x] CRUD deve ser filtrável e ordenável por qualquer campo.
+- [x] Deve possuir formulários para criação e atualização de seus itens.
+- [x] Deve permitir a deleção de qualquer item da lista.
 
 ##### CRUD de pedidos de compra:
 - [ ] Implementar CRUD de pedidos de compra com status (Em Aberto, Pago ou Cancelado).
