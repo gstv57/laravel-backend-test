@@ -22,7 +22,7 @@ class ClienteController extends Controller
     {
         $validate = $request->validate(['search' => 'string|max:50']);
         $clientes = $this
-            ->aplicarPesquisa($validate)
+            ->aplicarPesquisa($request->input('search'))
             ->aplicarFiltros($request->only(['nome', 'email', 'telefone', 'status', 'sexo', 'data_de_nascimento', 'cpf']))
             ->aplicarOrdenacao($request->input('sort', 'id'), $request->input('direction', 'asc'))
             ->paginacao(10);

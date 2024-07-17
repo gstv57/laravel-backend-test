@@ -2,6 +2,7 @@
 
 namespace App\Trait;
 
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 
 trait QueryBuilderTrait
@@ -15,23 +16,28 @@ trait QueryBuilderTrait
                 $this->query->where($campo, 'LIKE', '%' . $valor . '%');
             }
         }
+
         return $this;
     }
 
     public function aplicarPesquisa($termo)
     {
-        if (!is_null($termo) && $termo !== '') {
-            $this->query->where(function ($query) use ($termo) {
-                $query->where('nome', 'LIKE', '%' . $termo . '%')
-                      ->orWhere('email', 'LIKE', '%' . $termo . '%')
-                      ->orWhere('telefone', 'LIKE', '%' . $termo . '%')
-                      ->orWhere('data_de_nascimento', 'LIKE', '%' . $termo . '%')
-                      ->orWhere('cpf', 'LIKE', '%' . $termo . '%')
-                      ->orWhere('sexo', 'LIKE', '%' . $termo . '%')
-                      ->orWhere('status', 'LIKE', '%' . $termo . '%');
-            });
+        try{
+            if (!is_null($termo) && $termo !== '') {
+                $this->query->where(function ($query) use ($termo) {
+                    $query->where('nome', 'LIKE', '%' . $termo . '%')
+                          ->orWhere('email', 'LIKE', '%' . $termo . '%')
+                          ->orWhere('telefone', 'LIKE', '%' . $termo . '%')
+                          ->orWhere('data_de_nascimento', 'LIKE', '%' . $termo . '%')
+                          ->orWhere('cpf', 'LIKE', '%' . $termo . '%')
+                          ->orWhere('sexo', 'LIKE', '%' . $termo . '%')
+                          ->orWhere('status', 'LIKE', '%' . $termo . '%');
+                });
+            }
+            return $this;
+        }catch(Exception $e){
+            dd($e->getMessage());
         }
-        return $this;
     }
 
     public function aplicarOrdenacao($ordenar, $direcao = 'asc')
@@ -39,6 +45,7 @@ trait QueryBuilderTrait
         if ($ordenar) {
             $this->query->orderBy($ordenar, $direcao);
         }
+
         return $this;
     }
 

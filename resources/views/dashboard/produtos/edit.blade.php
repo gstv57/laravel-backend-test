@@ -1,9 +1,25 @@
 <x-app-layout>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="card">
-            <h5 class="card-header">Cadastro de Produto</h5>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Atualização de Produto</h5>
+                <form method="POST" action="{{ route('produtos.destroy', $produto->id) }}">
+                @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">Excluir</button>
+                </form>
+            </div>
             <div class="card-body">
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('produtos.update', $produto->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
