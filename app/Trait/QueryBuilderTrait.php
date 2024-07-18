@@ -11,41 +11,37 @@ trait QueryBuilderTrait
 
     public function aplicarFiltros(array $filtros = [])
     {
-        foreach ($filtros as $campo => $valor) {
-            if (!is_null($valor) && $valor !== '') {
-                $this->query->where($campo, 'LIKE', '%' . $valor . '%');
+        foreach ($filtros as $key => $value) {
+            if (!is_null($value) && $value !== '') {
+                $this->query->where($key, 'LIKE', '%' . $value . '%');
             }
         }
 
         return $this;
     }
 
-    public function aplicarPesquisa($termo)
+    public function aplicarPesquisa($termo = null, $campos = [])
     {
-        try{
-            if (!is_null($termo) && $termo !== '') {
-                $this->query->where(function ($query) use ($termo) {
-                    $query->where('nome', 'LIKE', '%' . $termo . '%')
-                          ->orWhere('email', 'LIKE', '%' . $termo . '%')
-                          ->orWhere('telefone', 'LIKE', '%' . $termo . '%')
-                          ->orWhere('data_de_nascimento', 'LIKE', '%' . $termo . '%')
-                          ->orWhere('cpf', 'LIKE', '%' . $termo . '%')
-                          ->orWhere('sexo', 'LIKE', '%' . $termo . '%')
-                          ->orWhere('status', 'LIKE', '%' . $termo . '%');
+        try {
+            if (!is_null($termo) && $termo !== '' && !empty($campos)) {
+                $this->query->where(function ($query) use ($termo, $campos) {
+                    foreach ($campos as $campo) {
+                        $query->orWhere($campo, 'LIKE', '%' . $termo . '%');
+                    }
                 });
             }
             return $this;
-        }catch(Exception $e){
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
 
-    public function aplicarOrdenacao($ordenar, $direcao = 'asc')
-    {
-        if ($ordenar) {
-            $this->query->orderBy($ordenar, $direcao);
-        }
 
+    public function aplicarOrdenacao($coluna, $direcao = 'asc')
+    {
+        if ($coluna) {
+            $this->query->orderBy($coluna, $direcao);
+        }
         return $this;
     }
 

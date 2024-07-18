@@ -23,7 +23,7 @@ class ProdutoController extends Controller
         $validate = $request->validate(['search' => 'string|max:50']);
 
         $produtos = $this
-            ->aplicarPesquisa($request->input('search'))
+            ->aplicarPesquisa($request->input('search'), ['nome', 'descricao', 'preco', 'quantidade', 'status'])
             ->aplicarFiltros($request->only(['nome', 'descricao', 'preco', 'quantidade', 'status']))
             ->aplicarOrdenacao($request->input('sort', 'id'), $request->input('direction', 'asc'))
             ->paginacao(10);

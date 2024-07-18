@@ -43,7 +43,7 @@
 #### Bônus:
 - [x] Implementar autenticação de usuário na aplicação.
 - [ ] Permitir deleção em massa de itens nos CRUDs.
-- [x] Implementar camada de Front-End utilizando a biblioteca Javascript Bootstrap e ser responsiva.
+- [] Implementar camada de Front-End utilizando a biblioteca Javascript Bootstrap e ser responsiva.
 - [ ] Criar API Rest JSON para todos os CRUDs listados acima.
 
 #### Nossa análise:
