@@ -76,16 +76,18 @@ class ProdutoController extends Controller
         ]);
 
         DB::beginTransaction();
+
         try {
             $id->update($validated);
             DB::commit();
+
             return redirect()->back()->with('success', 'Produto atualizado com sucesso.');
         } catch (Exception $e) {
             DB::rollback();
+
             return redirect()->back()->with('error', 'Erro ao atualizar o produto: ' . $e->getMessage());
         }
     }
-
 
     public function destroy(Produto $id)
     {

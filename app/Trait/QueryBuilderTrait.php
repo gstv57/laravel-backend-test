@@ -20,28 +20,29 @@ trait QueryBuilderTrait
         return $this;
     }
 
-    public function aplicarPesquisa($termo = null, $campos = [])
+    public function aplicarPesquisa($search = null, $colunas = [])
     {
         try {
-            if (!is_null($termo) && $termo !== '' && !empty($campos)) {
-                $this->query->where(function ($query) use ($termo, $campos) {
-                    foreach ($campos as $campo) {
-                        $query->orWhere($campo, 'LIKE', '%' . $termo . '%');
+            if (!is_null($search) && $search !== '' && !empty($colunas)) {
+                $this->query->where(function ($query) use ($search, $colunas) {
+                    foreach ($colunas as $coluna) {
+                        $query->orWhere($coluna, 'LIKE', '%' . $search . '%');
                     }
                 });
             }
+
             return $this;
         } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
 
-
     public function aplicarOrdenacao($coluna, $direcao = 'asc')
     {
         if ($coluna) {
             $this->query->orderBy($coluna, $direcao);
         }
+
         return $this;
     }
 
