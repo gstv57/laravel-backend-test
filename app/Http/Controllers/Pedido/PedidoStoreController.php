@@ -7,7 +7,7 @@ use App\Http\Requests\Pedido\PedidoStoreRequest;
 use App\Models\{Pedido};
 use Exception;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\{DB, Log};
+use Illuminate\Support\Facades\{DB};
 
 class PedidoStoreController extends Controller
 {
@@ -53,6 +53,7 @@ class PedidoStoreController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             dd($e->getMessage());
+
             return to_route('pedidos.create')->with('error', 'Pedido não criado com sucesso! Entre em contato com o suporte.');
         }
     }

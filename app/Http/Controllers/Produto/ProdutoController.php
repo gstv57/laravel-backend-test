@@ -98,10 +98,30 @@ class ProdutoController extends Controller
             DB::commit();
 
             return redirect()->route('produtos.index')->with('success', 'Produto excluído com sucesso.');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
 
             return redirect()->back()->with('error', 'Aconteceu algum problema ao excluir o produto. Entre em contato com o suporte');
+        }
+    }
+
+    public function ajax(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+        ]);
+
+        try {
+            $produtos = [];
+            $search   = $request->name;
+
+            if ($request->name) {
+                $produtos = Produto::where('nome', 'like', "%$search%")->get();
+            }
+
+            return response()->json($produtos);
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
     }
 }
