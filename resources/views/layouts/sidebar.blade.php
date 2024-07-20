@@ -13,13 +13,12 @@
                                 Menu
                             </li>
 
-                            <li class="nav-item ">
-
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-1" aria-controls="submenu-1"><i
+                            <li class="nav-item {{ Request::is('clientes*') ? 'active' : '' }}">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-clientes" aria-controls="submenu-clientes"><i
                                         class="fa fa-fw fa-user-circle"></i>Clientes <span
                                         class="badge badge-success">6</span></a>
-                                <div id="submenu-1" class="collapse submenu" style="">
+                                <div id="submenu-clientes" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('clientes.index') }}">Ver clientes</a>
@@ -31,12 +30,12 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item {{ Request::is('produtos*') ? 'active' : '' }}">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-2" aria-controls="submenu-2"><i
+                                    data-target="#submenu-produtos" aria-controls="submenu-produtos"><i
                                         class="fa fa-fw fa-box"></i>Produtos <span
                                         class="badge badge-success">10</span></a>
-                                <div id="submenu-2" class="collapse submenu" style="">
+                                <div id="submenu-produtos" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('produtos.index') }}">Ver produtos</a>
@@ -48,9 +47,25 @@
                                 </div>
                             </li>
 
-
+                            <li class="nav-item {{ Request::is('pedidos*') ? 'active' : '' }}">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-pedidos" aria-controls="submenu-pedidos"><i
+                                        class="fas fa-shopping-basket"></i>Pedidos <span
+                                        class="badge badge-success">10</span></a>
+                                <div id="submenu-pedidos" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('pedidos.index') }}">Ver pedidos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('pedidos.create') }}">Criar pedido</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
 
                         </ul>
+
                     </div>
                 </nav>
             </div>

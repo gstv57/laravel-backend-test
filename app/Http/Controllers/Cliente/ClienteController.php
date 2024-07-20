@@ -25,7 +25,7 @@ class ClienteController extends Controller
             ->aplicarPesquisa($request->input('search'), ['nome', 'email', 'telefone', 'status', 'sexo', 'data_de_nascimento', 'cpf'])
             ->aplicarFiltros($request->only(['nome', 'email', 'telefone', 'status', 'sexo', 'data_de_nascimento', 'cpf']))
             ->aplicarOrdenacao($request->input('sort', 'id'), $request->input('direction', 'asc'))
-            ->paginacao(10);
+            ->paginacao();
 
         $queryString = $request->except('page');
 

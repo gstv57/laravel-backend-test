@@ -15,12 +15,13 @@
                 <form method="GET" action="">
                     <div class="mb-3 input-group">
                         <input type="text" class="form-control" name="search" placeholder="Pesquisar produto"
-                            value="{{ request()->input('search') }}">
+                               value="{{ old('search', request()->input('search')) }}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                         </div>
                     </div>
                 </form>
+
                 <table class="table">
                     <thead>
                         <tr>

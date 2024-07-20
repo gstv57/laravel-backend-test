@@ -14,7 +14,7 @@
             <div class="card-body">
                 <form method="GET" action="{{ route('clientes.index') }}">
                     <div class="mb-3 input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Pesquisar cliente" value="{{ request()->input('search') }}">
+                        <input type="text" class="form-control" name="search" placeholder="Pesquisar cliente" value="{{ old('search', request()->input('search')) }}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                         </div>
@@ -97,7 +97,7 @@
                                 <td>{{ $cliente->nome }}</td>
                                 <td>{{ $cliente->email }}</td>
                                 <td>{{ $cliente->telefone }}</td>
-                                <td>{{ $cliente->data_de_nascimento }}</td>
+                                <td>{{ $cliente->data_de_nascimento->format('d/m/Y') }}</td>
                                 <td>{{ $cliente->cpf }}</td>
                                 <td>{{ $cliente->sexo }}</td>
                                 <td>{{ $cliente->status ? 'ativo' : 'inativo' }}</td>

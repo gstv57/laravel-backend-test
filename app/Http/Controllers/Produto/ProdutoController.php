@@ -26,7 +26,7 @@ class ProdutoController extends Controller
             ->aplicarPesquisa($request->input('search'), ['nome', 'descricao', 'preco', 'quantidade', 'status'])
             ->aplicarFiltros($request->only(['nome', 'descricao', 'preco', 'quantidade', 'status']))
             ->aplicarOrdenacao($request->input('sort', 'id'), $request->input('direction', 'asc'))
-            ->paginacao(10);
+            ->paginacao();
 
         $queryString = $request->except('page');
 
