@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => 123,
         ]);
 
-        Cliente::factory(100)->create();
-        Produto::factory(50)->create();
+        Cliente::factory(5)->create();
+        Produto::factory(5)->create();
     }
 }

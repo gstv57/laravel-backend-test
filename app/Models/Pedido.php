@@ -30,4 +30,27 @@ class Pedido extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function atualizar_pedido_valores()
+    {
+        $total_desconto = 0;
+        $sub_total      = 0;
+
+        foreach ($this->produtos as $produto) {
+            $valor_produto    = $produto->quantidade * $produto->valor_unitario;
+            $desconto_produto = $produto->desconto;
+
+            $sub_total += $valor_produto;
+            $total_desconto += $desconto_produto;
+        }
+
+        $total = $sub_total - $total_desconto;
+
+        $this->update([
+            'sub_total'    => $sub_total,
+            'desconto'     => $total_desconto,
+            'total_pedido' => $total,
+        ]);
+
+    }
 }

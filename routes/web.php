@@ -7,9 +7,10 @@ use App\Http\Controllers\Cliente\ClienteController;
 use App\Http\Controllers\Pagamento\{PagamentoCreateController, PagamentoStoreController};
 use App\Http\Controllers\Pedido\{PedidoArquivarController, PedidoDesarquivarController, PedidoDestroyController};
 use App\Http\Controllers\Pedido\{PedidoCreateController};
+use App\Http\Controllers\Pedido\{PedidoEditController, PedidoUpdateController};
 use App\Http\Controllers\Pedido\{PedidoIndexController, PedidoShowController, PedidoStoreController};
 use App\Http\Controllers\Produto\ProdutoController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{PedidoProdutoDestroyAjaxController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -47,7 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/pedidos/criar', PedidoCreateController::class)->name('pedidos.create');
     Route::post('/pedidos/criar', PedidoStoreController::class)->name('pedidos.store');
     Route::get('/pedidos/exibir/{id}', PedidoShowController::class)->name('pedidos.show');
-    // Route::put('/pedidos/editar/{id}', [ProdutoController::class, 'update'])->name('pedidos.update');
+    Route::get('/pedidos/editar/{id}', PedidoEditController::class)->name('pedidos.edit');
+    Route::delete('/pedidos/editar/{id}', PedidoProdutoDestroyAjaxController::class)->name('pedidos.destroy.produto');
+    Route::put('/pedidos/editar/{id}', PedidoUpdateController::class)->name('pedidos.update');
     Route::delete('/pedidos/arquivar/{id}', PedidoArquivarController::class)->name('pedidos.arquivar');
     Route::post('/pedidos/desarquivar/{id}', PedidoDesarquivarController::class)->name('pedidos.desarquivar');
     Route::delete('/pedidos/excluir/{id}', PedidoDestroyController::class)->name('pedidos.destroy');

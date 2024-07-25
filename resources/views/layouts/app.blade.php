@@ -20,7 +20,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -47,15 +47,11 @@
     <script src="/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
     <!-- sparkline js -->
     <script src="/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
-    <!-- morris js -->
-    <script src="/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
-    <script src="/assets/vendor/charts/morris-bundle/morris.js"></script>
+
     <!-- chart c3 js -->
     <script src="/assets/vendor/charts/c3charts/c3.min.js"></script>
     <script src="/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="/assets/vendor/charts/c3charts/C3chartjs.js"></script>
-    <script src="/assets/libs/js/dashboard-ecommerce.js"></script>
-
 </body>
 
 </html>

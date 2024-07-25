@@ -8,32 +8,23 @@
                 <!-- Detalhes do Pedido -->
                 <div class="mb-4">
                     <h5>Informações do Pedido</h5>
-                    <p><strong>Cliente:</strong> {{ $pedido->cliente->nome }}</p>
-                    <p><strong>Status:</strong>
-                        @switch($pedido->status_do_pedido)
-                            @case('pendente')
-                                <span class="badge bg-warning text-dark">Pendente</span>
-                            @break
-
-                            @case('processando')
-                                <span class="badge bg-info text-dark">Processando</span>
-                            @break
-
-                            @case('enviado')
-                                <span class="text-white badge bg-primary">Enviado</span>
-                            @break
-
-                            @case('entregue')
-                                <span class="text-white badge bg-success">Entregue</span>
-                            @break
-
-                            @case('cancelado')
-                                <span class="text-white badge bg-danger">Cancelado</span>
-                            @break
-                        @endswitch
-                    </p>
-                    <p><strong>Data do Pedido:</strong> {{ $pedido->data_pedido_efetuado->format('d-m-Y H:i') }}</p>
-                    <p><strong>Total:</strong> R$ {{ $pedido->total_pedido }}</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Cliente:</strong> {{ $pedido->cliente->nome }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Status:</strong>
+                                <x-status-pedido :status="$pedido->status_do_pedido"></x-status-pedido>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Data do Pedido:</strong> {{ $pedido->data_pedido_efetuado->format('d-m-Y H:i') }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Total:</strong> R$ {{ number_format($pedido->total_pedido, 2, ',', '.') }}</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Itens do Pedido -->
@@ -41,12 +32,29 @@
                     <h5>Itens do Pedido</h5>
                     <ul class="list-group">
                         @foreach ($pedido->produtos as $produto)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>{{ $produto->produto->nome }}</span>
-                                <span class="badge bg-primary rounded-pill">
-                                    R$ {{ number_format($produto->valor_unitario, 2, ',', '.') }} x
-                                    {{ $produto->quantidade }}
-                                </span>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ $produto->produto->foto_url }}" alt="Foto do produto"
+                                        class="img-thumbnail me-3" style="width: 50px; height: 50px;">
+                                    <div class="d-flex flex-column flex-grow-1">
+                                        <strong>{{ $produto->produto->nome }}</strong>
+                                        <small class="text-muted">
+                                            {{ $produto->quantidade }} x R$
+                                            {{ number_format($produto->valor_unitario, 2, ',', '.') }}
+                                        </small>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="mb-1">
+                                            <span class="text-white badge bg-success rounded-pill">
+                                                Total: R$
+                                                {{ number_format($produto->valor_unitario * $produto->quantidade, 2, ',', '.') }}
+                                            </span>
+                                        </div>
+                                        <span class="text-white badge bg-danger rounded-pill">
+                                            Desconto: R$ {{ number_format($produto->desconto, 2, ',', '.') }}
+                                        </span>
+                                    </div>
+                                </div>
                             </li>
                         @endforeach
                     </ul>
@@ -55,6 +63,7 @@
                 <!-- Ações -->
                 <div class="mb-4">
                     <h5>Ações</h5>
+
                     <!-- Alterar Status -->
                     <div class="mb-3">
                         <h6>Alterar Status</h6>
@@ -79,42 +88,38 @@
                                     </option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Atualizar Status</button>
+                            <button type="submit" class="mt-2 btn btn-primary">Atualizar Status</button>
                         </form>
                     </div>
+
                     <!-- Botões de Ação -->
                     <div class="mb-3">
-                        <div class="d-flex align-items-center">
-                            <a class="mr-1 btn btn-primary"
+                        <h6>Ações Rápidas</h6>
+                        <div class="gap-2 d-grid d-md-block">
+                            <a class="mb-2 btn btn-primary me-2"
                                 href="{{ route('pagamento.create', $pedido->id) }}">Processar Pagamento</a>
 
                             <!-- Botão Editar Pedido -->
-                            <a href="" class="mr-2 btn btn-warning">Editar Pedido</a>
+                            <a href="{{ route('pedidos.edit', $pedido->id) }}" class="mb-2 btn btn-warning me-2">Editar
+                                Pedido</a>
 
                             <!-- Botão Excluir Pedido -->
-                            <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST"
+                                onsubmit="return confirm('Tem certeza que deseja excluir este pedido?')"
+                                class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="color: black;"
-                                    onclick="return confirm('Tem certeza que deseja excluir este pedido?')">Excluir
-                                    Pedido</button>
+                                <button type="submit" class="mb-2 btn btn-danger">Excluir Pedido</button>
                             </form>
                         </div>
                     </div>
 
+                    <!-- Exibição de Erros -->
                     <div class="mb-3">
-                        @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @elseif (session('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('error') }}
-                            </div>
-                        @endif
+                        <x-errors-session></x-errors-session>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
