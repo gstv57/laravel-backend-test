@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Cliente;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cliente;
+use App\Models\{Cliente, User};
 use App\Trait\QueryBuilderTrait;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
@@ -41,17 +42,25 @@ class ClienteController extends Controller
     {
         $validated = $request->validate([
             'nome'               => ['required'],
-            'email'              => ['required', 'unique:clientes'],
+            'email'              => ['required', 'unique:users,email'],
             'telefone'           => ['required', 'min:10', 'max:11'],
             'data_de_nascimento' => ['required'],
             'cpf'                => ['required', 'unique:clientes'],
             'sexo'               => ['required', 'in:m,f'],
         ]);
-
         DB::beginTransaction();
 
         try {
+            $usuario = User::create([
+                'name'       => $validated['nome'],
+                'email'      => $validated['email'],
+                'password'   => 123,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $validated['user_id'] = $usuario->id;
             Cliente::create($validated);
+
             DB::commit();
 
             return redirect()->route('clientes.index')->with('success', 'Cadastro realizado com sucesso.');

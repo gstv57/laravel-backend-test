@@ -12,6 +12,8 @@ return new class () extends Migration {
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('nome');
             $table->string('email')->unique();
             $table->char('telefone', 11);
@@ -22,7 +24,6 @@ return new class () extends Migration {
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
