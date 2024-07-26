@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: dimitri
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: backend-test
+        container_name: backend-test
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - backend-test
+    nginx:
+        image: nginx:alpine
+        container_name: nginx-alpine
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d/
+        networks:
+            - backend-test
+networks:
+    backend-test:
+      driver: bridge
