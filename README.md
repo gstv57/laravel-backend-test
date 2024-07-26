@@ -5,4 +5,3 @@
     - [ ] Clientes Select2
     - [ ] Produtos Select2
     - [ ] Atualizar Pedido
-    

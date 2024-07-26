@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="data_de_nascimento">Data de Nascimento</label>
-                        <input id="data_de_nascimento" name="data_de_nascimento" type="date" class="form-control" value="{{ $cliente->data_de_nascimento }}">
+                        <input id="data_de_nascimento" name="data_de_nascimento" type="date" class="form-control" value="{{ $cliente->data_de_nascimento->format('Y-m-d') }}">
                         @error('data_de_nascimento')
                             <li class="parsley-required">{{ $message }}</li>
                         @enderror
