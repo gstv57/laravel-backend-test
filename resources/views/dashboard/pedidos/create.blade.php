@@ -81,7 +81,7 @@
                                 <p id="empty-message" class="text-muted">Nenhum produto selecionado</p>
                             </div>
                             <!-- Submit -->
-                            <button type="submit" class="mt-3 btn btn-primary">Cadastrar Pedido</button>
+                            <button type="submit" class="mt-3 btn btn-primary" onclick="saveProductsToLocalStorage()">Cadastrar Pedido</button>
                         </form>
                     </div>
                 </div>
@@ -102,7 +102,6 @@
             if (emptyMessage) {
                 emptyMessage.remove();
             }
-
             const container = document.getElementById('selected-products');
             const productHtml = `
                 <div class="mb-3 product-item card" data-id="${id}" data-nome="${nome}" data-preco="${preco}">
@@ -130,7 +129,6 @@
             container.insertAdjacentHTML('beforeend', productHtml);
             productIndex++;
 
-            saveProductsToLocalStorage();
         }
 
         function removeProduct(button) {

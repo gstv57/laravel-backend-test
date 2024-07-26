@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Pedido;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,13 +19,16 @@ class PedidoProdutoDestroyAjaxController extends Controller
         ]);
 
         DB::beginTransaction();
+
         try {
             $produto = $id->produtos()->where('produto_id', $request->produto_id)->first();
             $produto->delete();
             DB::commit();
+
             return response()->json(['success', 'Produto deletado do pedido com sucesso!']);
         } catch (Exception $e) {
             DB::rollback();
+
             return response()->json(['error', 'Aconteceu um erro ao deleter o produto do pedido, entre em contato com o suporte.']);
         }
     }
