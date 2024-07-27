@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pedido;
 
+use App\Http\Controllers\Controller;
 use App\Models\Pedido;
 use Exception;
 use Illuminate\Http\Request;
