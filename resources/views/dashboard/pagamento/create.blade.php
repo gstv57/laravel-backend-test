@@ -59,7 +59,7 @@
                     </dl>
                 </section>
 
-                <!-- Formas de Pagamento -->
+                <!-- Formas de PagamentoCriado -->
                 <section class="mb-2">
                     <h5>Formas de Pagamento</h5>
                     <form method="POST" action="{{ route('pagamento.store', $pedido->id) }}" id="formas_de_pagamento">

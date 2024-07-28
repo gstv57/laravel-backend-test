@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\{Model, Relations\HasMany, SoftDeletes};
 
 class Pedido extends Model
 {
@@ -51,6 +51,9 @@ class Pedido extends Model
             'desconto'     => $total_desconto,
             'total_pedido' => $total,
         ]);
-
+    }
+    public function pagamento(): hasMany
+    {
+        return $this->hasMany(Pagamento::class);
     }
 }

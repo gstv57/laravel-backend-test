@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pagamento;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Pedido, User};
+use App\Models\{Pagamento, Pedido};
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -16,11 +16,13 @@ class PagamentoStoreController extends Controller
 
         try {
             $id->update(['status_do_pedido' => 'processando', 'forma_de_pagamento' => $request->forma_de_pagamento]);
+            $payload = [
+                'total_pedido'      => $id->total_pedido,
+                'pedido_id'         => $id->id,
+                'tipo_de_pagamento' => $request->forma_de_pagamento,
+            ];
+            Pagamento::create($payload);
 
-            // dispatch e-mail com link de pagamento
-            $email = User::find($id->cliente_id)->first()->email;
-
-            // dispatch email com link de pagamento
             return to_route('pedidos.show', $id)->with('success', 'Link de pagamento enviado para o e-mail do cliente');
         } catch (ModelNotFoundException) {
             return to_route('pedidos.index')->with('error', 'Algo de errado aconteceu, o e-mail do cliente do pedido não foi localizado.');

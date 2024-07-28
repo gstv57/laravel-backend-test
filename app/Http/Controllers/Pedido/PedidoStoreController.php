@@ -52,6 +52,7 @@ class PedidoStoreController extends Controller
             return to_route('pedidos.show', $pedido->id)->with('success', 'Pedido criado com sucesso!');
         } catch (Exception $e) {
             DB::rollback();
+
             return to_route('pedidos.create')->with('error', 'Pedido não criado com sucesso! Entre em contato com o suporte.');
         }
     }

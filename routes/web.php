@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\{Pedido\PedidoProdutoDestroyAjaxController, ProfileController};
+use App\Http\Controllers\Categoria\CategoriaAttachlessProdutoController;
 use App\Http\Controllers\Categoria\{CategoriaAttachProdutoController, CategoriaShowController};
 use App\Http\Controllers\Categoria\{CategoriaCreateController, CategoriaIndexController, CategoriaStoreController};
-use App\Http\Controllers\Categoria\CategoriaAttachlessProdutoController;
 use App\Http\Controllers\Cliente\ClienteController;
 use App\Http\Controllers\Pagamento\{PagamentoCreateController, PagamentoStoreController};
 use App\Http\Controllers\Pedido\{PedidoArquivarController, PedidoDesarquivarController, PedidoDestroyController};
@@ -11,6 +10,7 @@ use App\Http\Controllers\Pedido\{PedidoCreateController};
 use App\Http\Controllers\Pedido\{PedidoEditController, PedidoUpdateController};
 use App\Http\Controllers\Pedido\{PedidoIndexController, PedidoShowController, PedidoStoreController};
 use App\Http\Controllers\Produto\ProdutoController;
+use App\Http\Controllers\{Pedido\PedidoProdutoDestroyAjaxController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
