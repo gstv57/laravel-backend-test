@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class Cliente extends Model
 {
@@ -15,12 +15,10 @@ class Cliente extends Model
     ];
 
     protected $fillable = ['user_id', 'nome', 'email', 'telefone', 'data_de_nascimento', 'cpf', 'sexo', 'status'];
-
-    public function pedidos()
+    public function pedidos(): hasMany
     {
         return $this->hasMany(Pedido::class);
     }
-
     public function user(): belongsTo
     {
         return $this->belongsTo(User::class);

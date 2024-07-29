@@ -16,6 +16,7 @@ class PagamentoStoreController extends Controller
 
         try {
             $id->update(['status_do_pedido' => 'processando', 'forma_de_pagamento' => $request->forma_de_pagamento]);
+
             $payload = [
                 'total_pedido'      => $id->total_pedido,
                 'pedido_id'         => $id->id,

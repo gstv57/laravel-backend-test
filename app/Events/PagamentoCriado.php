@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use App\Models\Pagamento;
-use Illuminate\Broadcasting\{InteractsWithSockets, PrivateChannel};
+use Illuminate\Broadcasting\{InteractsWithSockets};
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -17,11 +17,5 @@ class PagamentoCriado
     public function __construct(Pagamento $pagamento)
     {
         $this->pagamento = $pagamento;
-    }
-    public function broadcastOn(): array
-    {
-        return [
-            new PrivateChannel('channel-name'),
-        ];
     }
 }
